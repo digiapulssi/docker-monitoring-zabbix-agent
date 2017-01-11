@@ -20,3 +20,5 @@ Copy a configuration file called zabbix_agentd.conf into the conf/ folder. Then 
 	  -d docker-monitoring-zabbix-agent
 
 Socket is needed for monitoring containers. You can modify the mounts otherwise how ever you like to suite your monitoring needs.
+
+
