@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.2</version>
-    <date>2017-01-13T12:21:52Z</date>
+    <date>2017-01-13T12:28:23Z</date>
     <groups>
         <group>
             <name>Linux servers</name>
@@ -98,7 +98,7 @@
                         <formula/>
                         <conditions/>
                     </filter>
-                    <lifetime>1</lifetime>
+                    <lifetime>7</lifetime>
                     <description/>
                     <item_prototypes>
                         <item_prototype>
