@@ -19,7 +19,7 @@ It is recommended that containers in the monitored host have a name defined. Oth
 
 ## General usage:
 
-You can use the docker container to monitor the host by providing it necessary access to the monitored files/logs or systems. You need to enamble these via mounting needed paths and otherwise. Then configure the agent and Zabbix as you would normally. The docker agent monitors host system out of the box (testing needed still).
+You can use the docker container to monitor the host by providing it necessary access to the monitored files/logs or systems. You need to enable these via mounting needed paths and make sure they are usable for the docker. Then configure the agent and Zabbix as you would normally. The docker agent monitors host system out of the box (testing needed still).
 
 ## Using full configure file:
 Copy a configuration file called zabbix_agentd.conf into the conf/ folder. You can also copy any files such as certificates or other files into the conf/ file and reference them with the zabbix_agentd.conf as /data/conf/<filepath>:
@@ -31,7 +31,7 @@ docker run --name docker-monitoring-zabbix-agent \
 -d docker-monitoring-zabbix-agent
 ```
 
-Socket is needed for monitoring containers. You can modify the mounts otherwise how ever you like to suite your monitoring needs.
+Socket is needed for monitoring containers. As said, you can modify the mount points how ever you like to suite your monitoring needs.
 
 ## Using environment parameters:
 
