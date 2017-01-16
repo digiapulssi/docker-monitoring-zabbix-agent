@@ -30,12 +30,19 @@ update_config_var() {
 
 }
 
-update_config_var "Server" "${ZBX_Server}"
+
 
 if [ -d "/conf" ]; then
   echo "Bootstrap: found configuration folder, copying contents to /data"
   cp -R /conf /data/conf
 fi
+
+update_config_var "Server" "${ZBX_Server}"
+
+# add the required user parameters to the configuration
+echo "UserParameter=docker.containers.discovery,/data/discover.py" >> "$config_path"
+echo "UserParameter=docker.containers[*],/data/discover.py \$1 \$2" >>  "$config_path"
+
 chown -R zabbix /data /var/run/docker.sock
 echo "Bootstrap: starting agent..."
 sudo -u zabbix zabbix_agentd -f -c "$config_path"
