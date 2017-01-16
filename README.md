@@ -37,7 +37,7 @@ Socket is needed for monitoring containers. As said, you can modify the mount po
 
 ## Using environment parameters:
 
-The container contains internal configuration file which is used if a full configuration is not given inside the conf/zabbix_agentd.conf. The if a configuration file is given, any ZBX_ prefixed environment variables have no effect, since the configuration is overwritten completely.
+The container contains internal configuration file which is used if a full configuration is not given inside the conf/zabbix_agentd.conf. You can additionally still define the environment variables to overwrite some configurations, for e.g. the case where there is need to customise the premade configuration easily for different installations.
 
 ```
 docker run --name docker-monitoring-zabbix-agent \
