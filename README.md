@@ -28,6 +28,7 @@ An example configuration file can be found here: https://github.com/digiapulssi/
 
 ```
 docker run --name docker-monitoring-zabbix-agent \
+-p 10050:10050 \
 -v /your-config-file:/conf/zabbix-agentd.conf \
 -v /var/run/docker.sock:/var/run/docker.sock \
 -d docker-monitoring-zabbix-agent
@@ -41,6 +42,7 @@ The container contains internal configuration file which is used if a full confi
 
 ```
 docker run --name docker-monitoring-zabbix-agent \
+-p 10050:10050 \
 -e ZBX_Server=<zabbix-address>
 -v /var/run/docker.sock:/var/run/docker.sock \
 -d docker-monitoring-zabbix-agent
