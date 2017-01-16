@@ -31,7 +31,7 @@ docker run --name docker-monitoring-zabbix-agent \
 -p 10050:10050 \
 -v /your-config-file:/conf/zabbix-agentd.conf \
 -v /var/run/docker.sock:/var/run/docker.sock \
--d docker-monitoring-zabbix-agent
+-d digiapulssi/docker-monitoring-zabbix-agent
 ```
 
 Socket is needed for monitoring containers. As said, you can modify the mount points how ever you like to suite your monitoring needs.
@@ -45,7 +45,7 @@ docker run --name docker-monitoring-zabbix-agent \
 -p 10050:10050 \
 -e ZBX_Server=<zabbix-address>
 -v /var/run/docker.sock:/var/run/docker.sock \
--d docker-monitoring-zabbix-agent
+-d digiapulssi/docker-monitoring-zabbix-agent
 ```
 
 Following environment variables are used:
