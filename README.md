@@ -21,8 +21,10 @@ It is recommended that containers in the monitored host have a name defined. Oth
 
 You can use the docker container to monitor the host by providing it necessary access to the monitored files/logs or systems. You need to enable these via mounting needed paths and make sure they are usable for the docker. Then configure the agent and Zabbix as you would normally. The docker agent monitors host system out of the box (testing needed still).
 
-## Using full configure file:
-Copy a configuration file called zabbix_agentd.conf into the conf/ folder. You can also copy any files such as certificates or other files into the conf/ file and reference them with the zabbix_agentd.conf as /data/conf/<filepath>:
+## Using full configure file and including files for Zabbix agent use:
+Copy a configuration file called zabbix_agentd.conf into the conf/ folder. You can also copy any files such as certificates or other files under the conf/ file and reference them with the zabbix_agentd.conf as /data/conf/<filepath>.
+
+An example configuration file can be found here: https://github.com/digiapulssi/docker-monitoring-zabbix-agent/blob/NAKKI-844/conf/zabbix_agentd.conf
 
 ```
 docker run --name docker-monitoring-zabbix-agent \
