@@ -43,7 +43,7 @@ The container contains internal configuration file which is used if a full confi
 ```
 docker run --name docker-monitoring-zabbix-agent \
 -p 10050:10050 \
--e ZBX_Server=<zabbix-address>
+-e ZBX_Server=<zabbix-address> \
 -v /var/run/docker.sock:/var/run/docker.sock \
 -d digiapulssi/docker-monitoring-zabbix-agent
 ```
