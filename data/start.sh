@@ -34,7 +34,7 @@ update_config_var() {
 
 if [ -d "/conf" ]; then
   echo "Bootstrap: found configuration folder, copying contents to /data"
-  cp -R /conf /data/conf
+  cp -R /conf /data/
 fi
 
 update_config_var "Server" "${ZBX_Server}"

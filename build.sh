@@ -1,2 +1,2 @@
 #!/bin/bash
-docker build -t docker-monitoring-zabbix-agent -f Dockerfile .
+docker build -t digiapulssi/docker-monitoring-zabbix-agent -f Dockerfile .
