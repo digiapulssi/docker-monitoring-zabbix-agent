@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
-    <version>3.2</version>
-    <date>2017-01-13T12:28:23Z</date>
+    <version>3.0</version>
+    <date>2017-01-18T12:17:36Z</date>
     <groups>
         <group>
             <name>Linux servers</name>
@@ -417,7 +417,6 @@
                     <host_prototypes/>
                 </discovery_rule>
             </discovery_rules>
-            <httptests/>
             <macros/>
             <templates/>
             <screens/>

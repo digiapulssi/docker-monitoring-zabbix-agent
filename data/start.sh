@@ -39,10 +39,13 @@ fi
 
 update_config_var "Server" "${ZBX_Server}"
 
-# add the required user parameters to the configuration
-echo "UserParameter=docker.containers.discovery,/data/discover.py" >> "$config_path"
-echo "UserParameter=docker.containers[*],/data/discover.py \$1 \$2" >>  "$config_path"
+# add the required user parameters to the configuration if it is missing
+if ! grep -q "UserParameter=docker.containers.discovery" "$config_path"; then
+  echo "Initializing UserParameter for Docker monitoring..."
+  echo "UserParameter=docker.containers.discovery,/data/discover.py" >> "$config_path"
+  echo "UserParameter=docker.containers[*],/data/discover.py \$1 \$2" >>  "$config_path"
+fi
 
-chown -R zabbix /data /var/run/docker.sock
+chown -R zabbix /data/conf /data/discover.py /var/run/docker.sock
 echo "Bootstrap: starting agent..."
 sudo -u zabbix zabbix_agentd -f -c "$config_path"
