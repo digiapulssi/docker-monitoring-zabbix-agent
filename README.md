@@ -1,9 +1,13 @@
 # docker-monitoring-zabbix-agent
-Note: currently in development, so might be some issues that need resolving.
 
-Dockerized Zabbix agent that is able to monitor docker containers. Full configuration file can be given to the container to run zabbix agent. 
+Dockerized Zabbix agent that is able to monitor docker containers. Uses low level discovery to find docker containers and creates items for them in Zabbix. A full configuration file can be given to the container to run zabbix agent and fully customize the functionality. Not running containers and their items are automatically deleted after defined period (7 days in default template).
 
-Monitors following docker stats:
+* Note: currently in development, so might be some issues that need resolving. The monitoring is implemented via Userparameter that runs a Python script. This causes some cpu load itself. It should not be a problem when the environment monitored does not contain lot of docker containers, but may become issue with systems that have low resources and many containers to monitor. This issue will probably be addressed at some later point.
+
+
+![Latest data](https://raw.githubusercontent.com/digiapulssi/docker-monitoring-zabbix-agent/master/images/latest-data.png)
+
+Monitors following docker stats for each container:
 
 * CPU
 * Memory
@@ -11,7 +15,10 @@ Monitors following docker stats:
 * Incoming and outgoing network traffic
 * Container status
 * Container uptime
-* Container count
+* Container count (in host level)
+
+![Discovered items](https://raw.githubusercontent.com/digiapulssi/docker-monitoring-zabbix-agent/master/images/discovered-items.png)
+![Container CPU usage](https://raw.githubusercontent.com/digiapulssi/docker-monitoring-zabbix-agent/master/images/cpu-usage.png)
 
 It is recommended that containers in the monitored host have a name defined. Otherwise the docker generated name is used and the history data will be lost every time the container is created again.
 
@@ -20,10 +27,12 @@ It is recommended that containers in the monitored host have a name defined. Oth
 
 You can use the docker container to monitor the host by providing it necessary access to the monitored files/logs or systems. You need to enable these via mounting needed paths and make sure they are usable for the docker. Then configure the agent and Zabbix as you would normally. The docker agent is able to monitor some stats from the host, limited by what is available to the docker container (testing needed still). You may implement your own monitoring of host resources via volume mounts. Since the /proc cannot be mounted into a container directly, some of the stats that the agent sees are actually container local and not from the host.
 
+For discovering containers automatically, the discovery configuration needs to be set up in Zabbix. Download the Zabbix template with the discovery and prototype items here: ![Zabbix Template](https://raw.githubusercontent.com/digiapulssi/docker-monitoring-zabbix-agent/master/zabbix_docker_discovery_template.xml). Link the discovery template to any docker-monitoring-zabbix-agent hosts that are connected to Zabbix. 
+
 ## Using full configure file and including files for Zabbix agent use:
 Copy a configuration file called zabbix_agentd.conf into the /conf folder for the container. If any certificates or other files are to be used, suggestion is to copy also them under the /conf path. Any files in there are moved to /data/conf/<filepath> during startup and the ownership of the files is given to zabbix user. This will avoid the problem where zabbix agent does not have read privileges to files normally mounted with docker.
 
-An example configuration file can be found here: https://raw.githubusercontent.com/digiapulssi/docker-monitoring-zabbix-agent/master/conf/zabbix_agentd.conf
+An example configuration file can be found here: ![zabbix_agentd.conf](https://raw.githubusercontent.com/digiapulssi/docker-monitoring-zabbix-agent/master/conf/zabbix_agentd.conf)
 
 ```
 docker run --name docker-monitoring-zabbix-agent \
