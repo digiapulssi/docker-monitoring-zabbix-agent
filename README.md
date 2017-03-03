@@ -4,7 +4,6 @@ Dockerized Zabbix agent that is able to monitor docker containers. Uses low leve
 
 * Note: currently in development, so might be some issues that need resolving. The monitoring is implemented via Userparameter that runs a Python script. This causes some cpu load itself. It should not be a problem when the environment monitored does not contain lot of docker containers, but may become issue with systems that have low resources and many containers to monitor. This issue will probably be addressed at some later point.
 
-
 ![Latest data](https://raw.githubusercontent.com/digiapulssi/docker-monitoring-zabbix-agent/master/images/latest-data.png)
 
 Monitors following docker stats for each container:
@@ -21,6 +20,16 @@ Monitors following docker stats for each container:
 ![Container CPU usage](https://raw.githubusercontent.com/digiapulssi/docker-monitoring-zabbix-agent/master/images/cpu-usage.png)
 
 It is recommended that containers in the monitored host have a name defined. Otherwise the docker generated name is used and the history data will be lost every time the container is created again.
+
+# Host monitoring notes: 
+
+Currently the dockerized agent offers only limited host monitoring. Following stats are not available or have some limits:
+- Network traffic (container is isolated from seeing network interfaces of the host)
+- Filesystems (some mountpoints can be seen inside the container, but not all are discoverable)
+- Processes statistics (e.g. number of running processes in host)
+
+System statistics which can be monitored via monitoring some linux system file can be mounted to the docker container, but they may need a customized Zabbix item to point into non-standard path inside the docker container. At later point, host monitoring may be improved in this docker container, but it might need customizing the Zabbix agent code.
+
 
 # Usage:
 ## General usage:
