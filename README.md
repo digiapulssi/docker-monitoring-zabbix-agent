@@ -71,6 +71,13 @@ Following environment variables are used:
 * ZBX_Server
  * Server host name or ip
 
+## Notes on host monitoring
+
+Host CPU and memory can be monitored from docker-monitoring-zabbix-agent container without any problems.
+
+Host file system monitoring is not so trivial from docker-monitoring-zabbix-agent container since the file system mounts seen from inside the docker container do not correspond with host file system mounts. However, with manual configuration of mount monitoring items in Zabbix Server, this might be possible.
+
+Network monitoring of host network adapters is not possible from inside the docker-monitoring-zabbix-agent container.
 
 # Stats explained
 ## Memory
