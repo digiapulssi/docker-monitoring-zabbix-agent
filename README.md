@@ -1,5 +1,8 @@
 # docker-monitoring-zabbix-agent
 
+*NOTE: This repository is no longer maintained.*
+Please switch to use https://github.com/digiapulssi/docker-zabbix-agent instead.
+
 Dockerized Zabbix agent that is able to monitor docker containers. Uses low level discovery to find docker containers and creates items for them in Zabbix. A full configuration file can be given to the container to run zabbix agent and fully customize the functionality. Not running containers and their items are automatically deleted after defined period (7 days in default template).
 
 * Note: currently in development, so might be some issues that need resolving. The monitoring is implemented via Userparameter that runs a Python script. This causes some cpu load itself. It should not be a problem when the environment monitored does not contain lot of docker containers, but may become issue with systems that have low resources and many containers to monitor. This issue will probably be addressed at some later point.
